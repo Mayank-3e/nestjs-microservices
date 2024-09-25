@@ -11,16 +11,17 @@ export class ProductController {
 
   @Get()
   async all() {
-    this.client.emit('hello','Hello from RabbitMQ!')
     return await this.productService.all()
   }
 
   @Post()
-  create(
+  async create(
     @Body('title') title: string,
     @Body('image') image: string
   ) {
-    return this.productService.create(title,image)
+    const product=await this.productService.create(title,image);
+    this.client.emit('product_created',product);
+    return product;
   }
 
   @Get(':id')
@@ -29,16 +30,20 @@ export class ProductController {
   }
 
   @Put(':id')
-  update(
+  async update(
     @Param('id') id: number,
     @Body('title') title: string,
     @Body('image') image: string
   ) {
-    return this.productService.update(id,title,image)
+    await this.productService.update(id,title,image);
+    const product=await this.productService.get(id);
+    this.client.emit('product_updated',product);
+    return product;
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
-    return this.productService.delete(id)
+  async delete(@Param('id') id: number) {
+    await this.productService.delete(id);
+    this.client.emit('product_deleted',id);
   }
 }
