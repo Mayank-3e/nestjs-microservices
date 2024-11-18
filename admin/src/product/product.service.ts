@@ -7,22 +7,26 @@ import { Repository } from 'typeorm';
 export class ProductService {
   constructor(
     @InjectRepository(Product) private readonly productRepo: Repository<Product>
-  ) {}
+  ) { }
 
   async all(): Promise<Product[]> {
     return await this.productRepo.find()
   }
 
-  async create(title: string,image: string): Promise<Product> {
+  async create(title: string, image: string): Promise<Product> {
     return await this.productRepo.save({ title, image })
   }
 
   async get(id: number): Promise<Product> {
-    return await this.productRepo.findOneBy({id})
+    return await this.productRepo.findOneBy({ id })
   }
 
-  async update(id: number,title: string,image: string) {
-    return await this.productRepo.update(id, { title, image })
+  async update(id: number, data: {
+    title?: string,
+    image?: string,
+    likes?: number
+  }) {
+    return await this.productRepo.update(id, data)
   }
 
   async delete(id: number) {

@@ -12,7 +12,7 @@ export class Product {
   image: string;
 
   @Prop()
-  likes: string;
+  likes: number;
 }
 
 export const ProductSchema=SchemaFactory.createForClass(Product)
