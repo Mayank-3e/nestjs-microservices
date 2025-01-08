@@ -62,6 +62,5 @@ $ npm run test:cov
 
 * Used Event-Driven Architecture with RabbitMQ
 * 2 Microservices Admin and Main with different databases: MySQL & MongoDB
-* https://youtu.be/IsubcKdZPyE?si=-eHS0M6cvTQye0ge
 * To start admin app, first start `MYSQL80` service from Services in Task Manager.
 * To start main app, first run `mongod` in terminal to start MongoDB services.
