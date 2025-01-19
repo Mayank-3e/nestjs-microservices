@@ -64,3 +64,5 @@ $ npm run test:cov
 * 2 Microservices Admin and Main with different databases: MySQL & MongoDB
 * To start admin app, first start `MYSQL80` service from Services in Task Manager.
 * To start main app, first run `mongod` in terminal to start MongoDB services.
+* Main app: `npm run listen` for rabbitMQ messages
+* https://docs.google.com/presentation/d/1bMhK0I7hSGjMEqucG8eLRX7FButmrdOw
