@@ -13,7 +13,7 @@ export class ProductService {
     return await this.productModel.find().exec()
   }
 
-  async create(data): Promise<Product> {
+  async create(data: Product) {
     return new this.productModel(data).save()
   }
 
